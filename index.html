@@ -12,6 +12,12 @@ $(function () {
   const persons = 3
 
   for (let i = 0; i < persons; i++) {
+    window.setTimeout(spawnPerson(ctx, i), i * 500)
+  }
+})
+
+function spawnPerson(ctx, i) {
+  return function () {
     const nonexistentPerson = new Image(200, 200)
     nonexistentPerson.src = 'https://thispersondoesnotexist.com/'
 
@@ -21,7 +27,7 @@ $(function () {
       console.log(`loaded and drawn: ${nonexistentPerson.naturalWidth} x ${nonexistentPerson.naturalHeight}`)
     })
   }
-})
+}
 
     </script>
 </head>

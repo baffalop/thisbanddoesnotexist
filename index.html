@@ -8,36 +8,93 @@
     <script type="text/javascript">
 
 const persons = 10
-const rowWidth = 5
-const imageSize = 200
-const spacing = 50
+const imageSize = 140
 const timeStagger = 2000
 
-$(function () {
-  const ctx = $('#canvas')[0].getContext('2d')
+let ctx = null
+let foreground = null
 
-  for (let i = 0; i < persons; i++) {
-    window.setTimeout(spawnPerson(ctx, i), i * timeStagger)
-  }
+const positions = [
+  new Pos('John', 687, 370),
+  new Pos('George', 804, 398),
+  new Pos('Paul', 945, 345),
+  new Pos('Ringo', 1114, 369),
+]
+
+$(function () {
+  ctx = $('#canvas')[0].getContext('2d')
+
+  foreground = new Image(1600, 900)
+  foreground.src = 'img/sgtpp-pplonly-cutout.png'
+
+  foreground.addEventListener('load', function () {
+    ctx.drawImage(foreground, 0, 0)
+
+    for (let i = 0; i < persons; i++) {
+      window.setTimeout(spawnPerson(i), i * timeStagger)
+    }
+  })
 })
 
-function spawnPerson(ctx, i) {
-  return function () {
+function spawnPerson(i)
+{
+  return () => {
     const nonexistentPerson = new Image(imageSize, imageSize)
     nonexistentPerson.src = `https://thispersondoesnotexist.com/?${i}`
 
-    const xPos = (i % rowWidth) * (imageSize + spacing)
-    const yPos = Math.floor(i/rowWidth) * (imageSize + spacing)
-
     nonexistentPerson.addEventListener('load', function () {
-      ctx.drawImage(nonexistentPerson, xPos, yPos, imageSize, imageSize)
+      console.log(`nonexistent person ${i} loaded`)
+      drawPerson(nonexistentPerson)
     })
+  }
+}
+
+function drawPerson(person)
+{
+  for (let pos of positions) {
+    console.log(`checking position ${pos.name}`)
+
+    if (pos.isEmpty()) {
+      console.log(`Found empty position in ${pos.name}`)
+      pos.populate(person)
+      return
+    }
+  }
+}
+
+function Pos(name, x, y)
+{
+  this.name = name
+  this.x = x
+  this.y = y
+  this.img = null
+}
+
+Pos.prototype =
+{
+  isEmpty: function ()
+  {
+    return this.img === null
+  },
+
+  populate: function (image)
+  {
+    this.img = image
+    this.draw()
+  },
+
+  draw: function ()
+  {
+    if (this.img === null) return
+
+    ctx.drawImage(this.img, this.x, this.y, this.img.width, this.img.height)
+    ctx.drawImage(foreground, 0, 0)
   }
 }
 
     </script>
 </head>
 <body>
-<canvas id="canvas" width="1200" height="800"></canvas>
+<canvas id="canvas" width="1600" height="900"></canvas>
 </body>
 </html>

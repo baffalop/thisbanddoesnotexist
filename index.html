@@ -9,17 +9,17 @@
 
 $(function () {
   const ctx = $('#canvas')[0].getContext('2d')
-  const persons = 3
+  const persons = 5
 
   for (let i = 0; i < persons; i++) {
-    window.setTimeout(spawnPerson(ctx, i), i * 500)
+    window.setTimeout(spawnPerson(ctx, i), i * 2000)
   }
 })
 
 function spawnPerson(ctx, i) {
   return function () {
     const nonexistentPerson = new Image(200, 200)
-    nonexistentPerson.src = 'https://thispersondoesnotexist.com/'
+    nonexistentPerson.src = `https://thispersondoesnotexist.com/?${i}`
 
     const xPos = i * 250
     nonexistentPerson.addEventListener('load', function () {
@@ -32,6 +32,6 @@ function spawnPerson(ctx, i) {
     </script>
 </head>
 <body>
-<canvas id="canvas" width="800" height="300"></canvas>
+<canvas id="canvas" width="1200" height="800"></canvas>
 </body>
 </html>

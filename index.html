@@ -7,23 +7,30 @@
     <script type="text/javascript" src="vendor/jquery-3.3.1.js"></script>
     <script type="text/javascript">
 
+const persons = 10
+const rowWidth = 5
+const imageSize = 200
+const spacing = 50
+const timeStagger = 2000
+
 $(function () {
   const ctx = $('#canvas')[0].getContext('2d')
-  const persons = 5
 
   for (let i = 0; i < persons; i++) {
-    window.setTimeout(spawnPerson(ctx, i), i * 2000)
+    window.setTimeout(spawnPerson(ctx, i), i * timeStagger)
   }
 })
 
 function spawnPerson(ctx, i) {
   return function () {
-    const nonexistentPerson = new Image(200, 200)
+    const nonexistentPerson = new Image(imageSize, imageSize)
     nonexistentPerson.src = `https://thispersondoesnotexist.com/?${i}`
 
-    const xPos = i * 250
+    const xPos = (i % rowWidth) * (imageSize + spacing)
+    const yPos = Math.floor(i/rowWidth) * (imageSize + spacing)
+
     nonexistentPerson.addEventListener('load', function () {
-      ctx.drawImage(nonexistentPerson, xPos, 0, 200, 200)
+      ctx.drawImage(nonexistentPerson, xPos, yPos, imageSize, imageSize)
       console.log(`loaded and drawn: ${nonexistentPerson.naturalWidth} x ${nonexistentPerson.naturalHeight}`)
     })
   }

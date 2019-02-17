@@ -1,0 +1,19 @@
+body {
+    background-color: #ffe309;
+}
+
+p {
+    line-height: 40px;
+    font-size: 10pt;
+    font-family: 'Ubuntu', sans-serif;
+    color: #ec413f;
+}
+
+a {
+    color: #ec413f;
+    text-decoration: none;
+}
+
+a:hover {
+    border-bottom: 2px solid #ec413f;
+}

@@ -13,6 +13,7 @@ const timeStagger = 2000
 
 let ctx = null
 let foreground = null
+let background = null
 
 const positions = [
   new Pos('John', 687, 370),
@@ -23,6 +24,12 @@ const positions = [
 
 $(function () {
   ctx = $('#canvas')[0].getContext('2d')
+
+  background = new Image(1600, 900)
+  background.src = 'img/sgtpp-ppl-only.jpg'
+  background.addEventListener('load', function () {
+    ctx.drawImage(background, 0, 0)
+  })
 
   foreground = new Image(1600, 900)
   foreground.src = 'img/sgtpp-pplonly-cutout.png'

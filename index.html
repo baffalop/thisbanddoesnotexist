@@ -15,7 +15,7 @@ let ctx = null
 let foreground = null
 let background = null
 
-const positions = [
+let positions = [
   new Pos(687, 370), // John
   new Pos(804, 380), // George
   new Pos(945, 345), // Paul
@@ -32,6 +32,8 @@ const positions = [
 ]
 
 $(function () {
+  positions = shuffleArray(positions)
+
   ctx = $('#canvas')[0].getContext('2d')
 
   background = new Image(1600, 900)
@@ -106,6 +108,25 @@ Pos.prototype.draw = function ()
 
   ctx.drawImage(this.img, xPos, yPos, this.img.width, this.img.height)
   ctx.drawImage(foreground, 0, 0)
+}
+
+// based on Knuth Shuffle (https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array)
+function shuffleArray(arr)
+{
+  let currentIndex = arr.length
+  let randomIndex, temp
+
+  // While there remain elements to shuffle...
+  while (currentIndex !== 0) {
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex)
+    currentIndex--
+    // Swap with current
+    temp = arr[randomIndex]
+    arr[randomIndex] = arr[currentIndex]
+    arr[currentIndex] = temp
+  }
+  return arr
 }
 
     </script>

@@ -7,7 +7,8 @@
     <script type="text/javascript" src="vendor/jquery-3.3.1.js"></script>
     <script type="text/javascript">
 
-const imageSize = 140
+const scale = 1200 / 1600
+const imageSize = 140 * scale
 const timeStagger = 2000
 
 let ctx = null
@@ -35,17 +36,17 @@ $(function () {
 
   ctx = $('#canvas')[0].getContext('2d')
 
-  background = new Image(1600, 900)
+  background = new Image(1600 * scale, 900 * scale)
   background.src = 'img/sgtpp-ppl-only.jpg'
   background.addEventListener('load', function () {
-    ctx.drawImage(background, 0, 0)
+    ctx.drawImage(background, 0, 0, background.width, background.height)
   })
 
-  foreground = new Image(1600, 900)
+  foreground = new Image(1600 * scale, 900 * scale)
   foreground.src = 'img/sgtpp-pplonly-cutout.png'
 
   foreground.addEventListener('load', function () {
-    ctx.drawImage(foreground, 0, 0)
+    ctx.drawImage(foreground, 0, 0, foreground.width, foreground.height)
 
     for (let i = 0; i < positions.length; i++) {
       window.setTimeout(spawnPerson(i), i * timeStagger)
@@ -78,8 +79,8 @@ function drawPerson(person)
 
 function Pos(x, y)
 {
-  this.x = x
-  this.y = y
+  this.x = x * scale
+  this.y = y * scale
   this.img = null
 }
 
@@ -102,7 +103,7 @@ Pos.prototype.draw = function ()
   const yPos = this.y - (this.img.height / 2)
 
   ctx.drawImage(this.img, xPos, yPos, this.img.width, this.img.height)
-  ctx.drawImage(foreground, 0, 0)
+  ctx.drawImage(foreground, 0, 0, foreground.width, foreground.height)
 }
 
 // based on Knuth Shuffle (https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array)
@@ -127,6 +128,6 @@ function shuffleArray(arr)
     </script>
 </head>
 <body>
-<canvas id="canvas" width="1600" height="900"></canvas>
+<canvas id="canvas" width="1200" height="675"></canvas>
 </body>
 </html>

@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <title>thisbanddoesnotexist</title>
 
-    <script type="text/javascript" src="vendor/jquery-3.3.1.js"></script>
     <script type="text/javascript">
 
 const scale = 1200 / 1600
@@ -34,7 +33,7 @@ let positions = [
 $(function () {
   positions = shuffleArray(positions)
 
-  ctx = $('#canvas')[0].getContext('2d')
+  ctx = document.getElementById('canvas').getContext('2d')
 
   background = new Image(1600 * scale, 900 * scale)
   background.src = 'img/sgtpp-ppl-only.jpg'

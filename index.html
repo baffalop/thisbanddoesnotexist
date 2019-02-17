@@ -70,19 +70,15 @@ function spawnPerson(i)
 function drawPerson(person)
 {
   for (let pos of positions) {
-    console.log(`checking position ${pos.name}`)
-
     if (pos.isEmpty()) {
-      console.log(`Found empty position in ${pos.name}`)
       pos.populate(person)
       return
     }
   }
 }
 
-function Pos(name, x, y)
+function Pos(x, y)
 {
-  this.name = name
   this.x = x
   this.y = y
   this.img = null

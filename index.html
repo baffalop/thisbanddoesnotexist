@@ -57,8 +57,6 @@ function init() {
   foreground.src = 'img/sgtpp-pplonly-cutout.png'
 
   foreground.addEventListener('load', function () {
-    ctx.drawImage(foreground, 0, 0, foreground.width, foreground.height)
-
     for (let i = 0; i < positions.length; i++) {
       window.setTimeout(spawnPerson(i), i * timeStagger)
     }

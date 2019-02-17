@@ -17,3 +17,10 @@ a {
 a:hover {
     border-bottom: 2px solid #ec413f;
 }
+
+div.border {
+    display: inline-block;
+    padding: 7px;
+    padding-bottom: 4px;
+    border: 2px solid #ec413f;
+}

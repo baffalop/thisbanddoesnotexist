@@ -7,7 +7,6 @@
     <script type="text/javascript" src="vendor/jquery-3.3.1.js"></script>
     <script type="text/javascript">
 
-const persons = 4
 const imageSize = 140
 const timeStagger = 2000
 
@@ -48,7 +47,7 @@ $(function () {
   foreground.addEventListener('load', function () {
     ctx.drawImage(foreground, 0, 0)
 
-    for (let i = 0; i < persons; i++) {
+    for (let i = 0; i < positions.length; i++) {
       window.setTimeout(spawnPerson(i), i * timeStagger)
     }
   })

@@ -23,3 +23,13 @@ div.border {
     padding-bottom: 4px;
     border: 2px solid #ec413f;
 }
+
+div.column {
+    display: inline-block;
+    /*text-align: left;*/
+}
+
+div.clicker {
+    position: absolute;
+    cursor: pointer;
+}

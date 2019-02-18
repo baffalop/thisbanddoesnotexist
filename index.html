@@ -6,6 +6,8 @@
 
     <link href="https://fonts.googleapis.com/css?family=Ubuntu:500" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="style.css">
+
+    <script type="text/javascript" src="vendor/jquery-3.3.1.js"></script>
     <script type="text/javascript">
 
 const scale = 1200 / 1600
@@ -33,7 +35,7 @@ let positions = [
 $(function () {
   positions = shuffleArray(positions)
 
-  ctx = document.getElementById('canvas').getContext('2d')
+  ctx = $('#canvas')[0].getContext('2d')
 
   background = new Image(1600 * scale, 900 * scale)
   background.src = 'img/sgtpp-ppl-only.jpg'

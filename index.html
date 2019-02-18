@@ -30,17 +30,7 @@ let positions = [
   new Pos(1330, 176), // butler
 ]
 
-ready(init)
-
-function ready(fn) {
-  if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
-    fn()
-  } else {
-    document.addEventListener('DOMContentLoaded', fn)
-  }
-}
-
-function init() {
+$(function () {
   positions = shuffleArray(positions)
 
   ctx = document.getElementById('canvas').getContext('2d')
@@ -61,7 +51,7 @@ function init() {
       window.setTimeout(spawnPerson(i), i * timeStagger)
     }
   })
-}
+})
 
 function spawnPerson(i)
 {

@@ -14,7 +14,7 @@ const scale = 1200 / 1600
 const imageSize = 140 * scale
 const timeStagger = 2000
 
-let ctx, foreground, background
+let ctx, canvasPos, foreground, background
 
 let positions = [
   new Pos(687, 370), // John
@@ -33,9 +33,11 @@ let positions = [
 ]
 
 $(function () {
-  positions = shuffleArray(positions)
+  const canvas = $('#canvas')
+  ctx = canvas[0].getContext('2d')
+  canvasPos = canvas.position()
 
-  ctx = $('#canvas')[0].getContext('2d')
+  positions = shuffleArray(positions)
 
   background = new Image(1600 * scale, 900 * scale)
   background.src = 'img/sgtpp-ppl-only.jpg'
@@ -134,7 +136,7 @@ function shuffleArray(arr)
     <div class="column">
         <div class="border">
             <canvas id="canvas" width="1200" height="675"></canvas>
-            <div class="clicker" style="width: 140px; height: 140px; top: 0px; left: 0px"></div>
+            <div class="clicker"></div>
         </div>
         <p>
             powered by <a href="https://thispersondoesnotexist.com/">thispersondoesnotexist</a>

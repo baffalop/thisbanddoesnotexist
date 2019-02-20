@@ -48,7 +48,6 @@ $(function () {
 
   foreground = new Image(1600 * scale, 900 * scale)
   foreground.src = 'img/sgtpp-pplonly-cutout.png'
-  Face.prototype.fg = foreground
 
   foreground.addEventListener('load', function () {
     ctx.drawImage(foreground, 0, 0, foreground.width, foreground.height)

@@ -24,7 +24,7 @@ Face.prototype.draw = function ()
   const xPos = this.x - (this.img.width / 2)
   const yPos = this.y - (this.img.height / 2)
 
-  this.ctx.drawImage(this.img, xPos, yPos, this.img.width, this.img.height)
-  this.ctx.drawImage(this.fg, 0, 0, this.fg.width, this.fg.height)
+  ctx.drawImage(this.img, xPos, yPos, this.img.width, this.img.height)
+  ctx.drawImage(foreground, 0, 0, foreground.width, foreground.height)
 }
 

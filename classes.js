@@ -5,15 +5,16 @@ function Face(x, y)
   this.img = null
 }
 
-Face.prototype.isEmpty = function ()
+Face.prototype.spawn = function (i)
 {
-  return this.img === null
-}
+  const nonexistentPerson = new Image(imageSize, imageSize)
+  nonexistentPerson.src = `https://thispersondoesnotexist.com/?${i}`
+  this.img = nonexistentPerson
 
-Face.prototype.populate = function (image)
-{
-  this.img = image
-  this.draw()
+  nonexistentPerson.addEventListener('load', () => {
+    console.log(`nonexistent person ${i} loaded`)
+    this.draw()
+  })
 }
 
 Face.prototype.draw = function ()
@@ -23,7 +24,7 @@ Face.prototype.draw = function ()
   const xPos = this.x - (this.img.width / 2)
   const yPos = this.y - (this.img.height / 2)
 
-  ctx.drawImage(this.img, xPos, yPos, this.img.width, this.img.height)
-  ctx.drawImage(foreground, 0, 0, foreground.width, foreground.height)
+  this.ctx.drawImage(this.img, xPos, yPos, this.img.width, this.img.height)
+  this.ctx.drawImage(this.fg, 0, 0, this.fg.width, this.fg.height)
 }
 

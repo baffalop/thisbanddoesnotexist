@@ -17,7 +17,7 @@ const timeStagger = 2000
 
 let ctx, canvasPos, foreground, background
 
-let positions = [
+let faces = [
   new Face(687, 370), // John
   new Face(804, 380), // George
   new Face(945, 345), // Paul
@@ -38,7 +38,7 @@ $(function () {
   ctx = canvas[0].getContext('2d')
   canvasPos = canvas.position()
 
-  positions = shuffleArray(positions)
+  faces = shuffleArray(faces)
 
   background = new Image(1600 * scale, 900 * scale)
   background.src = 'img/sgtpp-ppl-only.jpg'
@@ -48,38 +48,16 @@ $(function () {
 
   foreground = new Image(1600 * scale, 900 * scale)
   foreground.src = 'img/sgtpp-pplonly-cutout.png'
+  Face.prototype.fg = foreground
 
   foreground.addEventListener('load', function () {
     ctx.drawImage(foreground, 0, 0, foreground.width, foreground.height)
 
-    for (let i = 0; i < positions.length; i++) {
-      window.setTimeout(spawnPerson(i), i * timeStagger)
+    for (const [i, face] of faces.entries()) {
+      window.setTimeout(() => face.spawn(i), i * timeStagger)
     }
   })
 })
-
-function spawnPerson(i)
-{
-  return () => {
-    const nonexistentPerson = new Image(imageSize, imageSize)
-    nonexistentPerson.src = `https://thispersondoesnotexist.com/?${i}`
-
-    nonexistentPerson.addEventListener('load', function () {
-      console.log(`nonexistent person ${i} loaded`)
-      drawPerson(nonexistentPerson)
-    })
-  }
-}
-
-function drawPerson(person)
-{
-  for (let pos of positions) {
-    if (pos.isEmpty()) {
-      pos.populate(person)
-      return
-    }
-  }
-}
 
 // based on Knuth Shuffle (https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array)
 function shuffleArray(arr)

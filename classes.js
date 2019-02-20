@@ -1,22 +1,22 @@
-function Pos(x, y)
+function Face(x, y)
 {
   this.x = x * scale
   this.y = y * scale
   this.img = null
 }
 
-Pos.prototype.isEmpty = function ()
+Face.prototype.isEmpty = function ()
 {
   return this.img === null
 }
 
-Pos.prototype.populate = function (image)
+Face.prototype.populate = function (image)
 {
   this.img = image
   this.draw()
 }
 
-Pos.prototype.draw = function ()
+Face.prototype.draw = function ()
 {
   if (this.img === null) return
 

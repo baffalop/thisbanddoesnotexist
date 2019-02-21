@@ -36,7 +36,7 @@ let faces = [
 $(function () {
   const canvas = $('#canvas')
   ctx = canvas[0].getContext('2d')
-  canvasPos = canvas.position()
+  canvasPos = canvas.offset()
 
   faces = shuffleArray(faces)
 

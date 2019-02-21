@@ -3,19 +3,41 @@ function Face(x, y)
   this.x = x * scale
   this.y = y * scale
   this.img = null
+  this.clicker = null
 }
 
 Face.prototype = {
+  getClicker: function ()
+  {
+    if (this.clicker !== null) return this.clicker
+
+    this.clicker = $('<div></div>')
+      .addClass('clicker')
+      .width(imageSize)
+      .height(imageSize)
+      .offset({
+        left: canvasPos.left + this.x - imageSize * scale * 0.5,
+        top: canvasPos.top + this.y - imageSize * scale * 0.5,
+      })
+
+    $('.column').append(this.clicker)
+
+    return this.clicker
+  },
+
   spawn: function (i)
   {
     const nonexistentPerson = new Image(imageSize, imageSize)
     nonexistentPerson.src = `https://thispersondoesnotexist.com/?${i}`
     this.img = nonexistentPerson
 
+    this.spin()
+
     nonexistentPerson.addEventListener('load', () =>
     {
       console.log(`nonexistent person ${i} loaded`)
       this.draw()
+      this.clickable()
     })
   },
 
@@ -28,5 +50,19 @@ Face.prototype = {
 
     ctx.drawImage(this.img, xPos, yPos, this.img.width, this.img.height)
     ctx.drawImage(foreground, 0, 0, foreground.width, foreground.height)
+
+    this.clickable()
+  },
+
+  clickable: function ()
+  {
+    const clicker = this.getClicker()
+    clicker.removeClass('spinner')
+  },
+
+  spin: function ()
+  {
+    const clicker = this.getClicker()
+    clicker.addClass('spinner')
   }
 }

@@ -28,7 +28,7 @@ Face.prototype = {
   spawn: function (i)
   {
     const nonexistentPerson = new Image(imageSize, imageSize)
-    nonexistentPerson.src = `https://thispersondoesnotexist.com/?${i}`
+    nonexistentPerson.src = `https://thispersondoesnotexist.com/image?${i}`
     this.img = nonexistentPerson
 
     this.spin()

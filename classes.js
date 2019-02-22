@@ -25,8 +25,9 @@ Face.prototype = {
     return this.clicker
   },
 
-  spawn: function (i)
+  spawn: function ()
   {
+    let i = faceCount++
     const nonexistentPerson = new Image(imageSize, imageSize)
     nonexistentPerson.src = `https://thispersondoesnotexist.com/image?${i}`
     this.img = nonexistentPerson

@@ -54,9 +54,8 @@ $(function () {
   foreground.addEventListener('load', function () {
     ctx.drawImage(foreground, 0, 0, foreground.width, foreground.height)
 
-    for (const face of faces) {
-      window.setTimeout(() => face.spawn(faceCount), faceCount * timeStagger)
-      faceCount++
+    for (const [i, face] of faces.entries()) {
+      window.setTimeout(() => face.spawn(), i * timeStagger)
     }
   })
 })

@@ -33,6 +33,8 @@ let faces = [
   new Face(1330, 176), // butler
 ]
 
+let faceCount = 0
+
 $(function () {
   const canvas = $('#canvas')
   ctx = canvas[0].getContext('2d')
@@ -52,8 +54,9 @@ $(function () {
   foreground.addEventListener('load', function () {
     ctx.drawImage(foreground, 0, 0, foreground.width, foreground.height)
 
-    for (const [i, face] of faces.entries()) {
-      window.setTimeout(() => face.spawn(i), i * timeStagger)
+    for (const face of faces) {
+      window.setTimeout(() => face.spawn(faceCount), faceCount * timeStagger)
+      faceCount++
     }
   })
 })

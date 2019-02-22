@@ -56,13 +56,15 @@ Face.prototype = {
 
   clickable: function ()
   {
-    const clicker = this.getClicker()
-    clicker.removeClass('spinner')
+    this.getClicker()
+      .removeClass('spinner')
+      .click(() => {this.spawn()})
   },
 
   spin: function ()
   {
-    const clicker = this.getClicker()
-    clicker.addClass('spinner')
+    this.getClicker()
+      .addClass('spinner')
+      .off('click')
   }
 }

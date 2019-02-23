@@ -47,11 +47,9 @@ $(function () {
   background.addEventListener('load', function () {
     ctx.drawImage(background, 0, 0, background.width, background.height)
   })
-  background.crossOrigin="anonymous"
 
   foreground = new Image(1600 * scale, 900 * scale)
   foreground.src = 'img/sgtpp-pplonly-cutout.png'
-  background.crossOrigin="anonymous"
 
   foreground.addEventListener('load', function () {
     ctx.drawImage(foreground, 0, 0, foreground.width, foreground.height)

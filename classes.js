@@ -30,6 +30,7 @@ Face.prototype = {
     let i = faceCount++
     const nonexistentPerson = new Image(imageSize, imageSize)
     nonexistentPerson.src = `https://thispersondoesnotexist.com/image?${i}`
+    nonexistentPerson.crossOrigin='anonymous'
     this.img = nonexistentPerson
 
     this.spin()

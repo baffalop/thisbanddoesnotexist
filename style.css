@@ -3,7 +3,7 @@ body {
 }
 
 p {
-    line-height: 20px;
+    line-height: 40px;
     font-size: 10pt;
     font-family: 'Ubuntu', sans-serif;
     color: #ec413f;
@@ -26,16 +26,7 @@ div.border {
 
 div.column {
     display: inline-block;
-}
-
-div.left {
-    float: left;
-    text-align: left;
-}
-
-div.right {
-    float: right;
-    text-align: right;
+    /*text-align: left;*/
 }
 
 div.clicker {

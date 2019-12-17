@@ -1,4 +1,4 @@
-# thisbanddoesnotexist
+# [thisbanddoesnotexist](https://baffalop.github.io/thisbanddoesnotexist)
 
 What if [thispersondoesnotexist](https://thispersondoesnotexist.com/) got together to form a Lonely Hearts Club Band?
 
